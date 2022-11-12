@@ -131,7 +131,7 @@ const LNG_MAX = 139.80000;
 
 // avatar, строка — адрес изображения вида img/avatars/user{{xx}}.png, где {{xx}} — это число от 1 до 10. Перед однозначными числами ставится 0. Например, 01, 02...10. Адреса изображений не повторяются.
 const avatarCreate = () => ({
-  avatar: 'img/avatars/user&{index.toString().padStart(2, \'0\')}.png'
+  avatar: `img/avatars/user${getRandomPositiveInteger(1, 10).toString().padStart(2, '0')}.png`
 });
 
 
@@ -167,6 +167,11 @@ const getOffer = () => {
 };
 
 const SIMILAR_OFFER_COUNT = 10; //количество сгенерированных объектов
-const similarOffer = Array.from({length: SIMILAR_OFFER_COUNT, getOffer});
-
+const similarOffer = Array.from({length: SIMILAR_OFFER_COUNT}).fill(null).map(getOffer);
+// eslint-disable-next-line no-console
 console.log(similarOffer);
+// const offerList = [];
+// for (let i = 0; i < SIMILAR_OFFER_COUNT; i++) {
+//   offerList.push(getOffer())
+// }
+// console.log(offerList)
